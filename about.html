@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About NiFty</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            /* color: #222; */
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+        .header-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .header-section .overlay {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        .header-section h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .header-section p {
+            font-size: 1.5rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 50px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .intro-section .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .intro-section .text-content {
+            flex: 1 1 300px;
+            padding: 20px;
+        }
+
+        .intro-section .image-content {
+            flex: 1 1 300px;
+            padding: 20px;
+        }
+
+        .intro-section img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 50px 20px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+
+        .features-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .features-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feature {
+            flex: 1 1 200px;
+            margin: 10px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .feature img {
+            max-width: 50px;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .feature p {
+            font-size: 1rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 50px 20px;
+        }
+
+        .how-it-works-section h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .steps-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step {
+            margin: 20px 0;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .step p {
+            font-size: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-section {
+            padding: 50px 20px;
+            background: #f9f9f9;
+        }
+
+        .applications-section h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .applications-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .application {
+            flex: 1 1 200px;
+            margin: 10px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .application img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .application h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .application p {
+            font-size: 1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .testimonials-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonial {
+            flex: 0 0 300px;
+            margin: 0 10px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            scroll-snap-align: center;
+        }
+
+        .testimonial p {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .testimonial h4 {
+            font-size: 1.2rem;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            padding: 50px 20px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            background: #222;
+            color: #fff;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer .social-media {
+            margin-top: 10px;
+        }
+
+        .footer .social-media a {
+            margin: 0 5px;
+        }
+
+        .footer .social-media img {
+            width: 30px;
+        }
+
+        /* Animations */
+        [data-scroll] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        [data-scroll].scrolled {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+    </head>
+    <body>
+        <header class="header-section" style="background-image: url('Neural.jpg');">
+            <div class="overlay">
+                <h1>Introducing NiFty</h1>
+        <p>Transforming the future with intelligent solutions</p>
+    </div>
+    </header>
+
+    <section class="intro-section">
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h2>What is NiFty?</h2>
+                <p>NiFty is an advanced artificial intelligence model designed to [describe primary capabilities]. It leverages cutting-edge technology to deliver [key benefits].</p>
+            </div>
+            <div class="image-content">
+                <img src="path/to/your/image.jpg" alt="NiFty in action">
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Key Features</h2>
+        <div class="features-wrapper">
+            <div class="feature" data-scroll>
+                <img src="path/to/feature-icon1.png" alt="Feature 1">
+                <h3>Feature 1</h3>
+                <p>Description of feature 1.</p>
+            </div>
+            <div class="feature" data-scroll>
+                <img src="path/to/feature-icon2.png" alt="Feature 2">
+                <h3>Feature 2</h3>
+                <p>Description of feature 2.</p>
+            </div>
+            <div class="feature" data-scroll>
+                <img src="path/to/feature-icon3.png" alt="Feature 3">
+                <h3>Feature 3</h3>
+                <p>Description of feature 3.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works-section">
+        <h2>How It Works</h2>
+        <div class="steps-wrapper">
+            <div class="step" data-scroll>
+                <h3>Step 1: Data Collection</h3>
+                <p>Description of the first step.</p>
+            </div>
+            <div class="step" data-scroll>
+                <h3>Step 2: Model Training</h3>
+                <p>Description of the second step.</p>
+            </div>
+            <div class="step" data-scroll>
+                <h3>Step 3: Deployment</h3>
+                <p>Description of the third step.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="applications-section">
+        <h2>Applications</h2>
+        <div class="applications-wrapper">
+            <div class="application" data-scroll>
+                <img src="path/to/application1.jpg" alt="Application 1">
+                <h3>Healthcare</h3>
+                <p>How the model is used in healthcare.</p>
+            </div>
+            <div class="application" data-scroll>
+                <img src="path/to/application2.jpg" alt="Application 2">
+                <h3>Finance</h3>
+                <p>How the model is used in finance.</p>
+            </div>
+            <div class="application" data-scroll>
+                <img src="path/to/application3.jpg" alt="Application 3">
+                <h3>Retail</h3>
+                <p>How the model is used in retail.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <h2>What People Are Saying</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial">
+                <p>"NiFty has revolutionized our business operations."</p>
+                <h4>- User 1, Position</h4>
+            </div>
+            <div class="testimonial">
+                <p>"The accuracy and efficiency are unmatched."</p>
+                <h4>- User 2, Position</h4>
+            </div>
+            <div class="testimonial">
+                <p>"An indispensable tool for our team."</p>
+                <h4>- User 3, Position</h4>
+            </div>
+            <div class="testimonial">
+                <p>"An indispensable tool for our team."</p>
+                <h4>- User 4, Position</h4>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Get Started with NiFty</h2>
+        <p>Experience the future of AI today.Click on Try now to explore our NiFty</p>
+        <a href="index.html" target="_blank" class="cta-button">Try now</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 NiFtyAI. All rights reserved.</p>
+            <div class="social-media">
+                <a href="https://facebook.com/yourprofile"><img src="path/to/facebook-icon.png" alt="Facebook"></a>
+                <a href="https://twitter.com/yourprofile"><img src="path/to/twitter-icon.png" alt="Twitter"></a>
+                <a href="https://linkedin.com/yourprofile"><img src="path/to/linkedin-icon.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+            
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+        
+            const displayScrollElement = (element) => {
+                element.classList.add('scrolled');
+            };
+        
+            const hideScrollElement = (element) => {
+                element.classList.remove('scrolled');
+            };
+        
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                })
+            }
+        
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            })
+        });
+
+    </script>
+</body>
+</html>

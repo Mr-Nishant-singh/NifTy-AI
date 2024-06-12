@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiFtyAI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: gray;
+            overflow-y: scroll;
+        }
+        
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: #1a1a1a;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        .logo img {
+            height: 30px;
+            border-radius: 30px;
+        }
+        
+        .menu-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            left: -295px;
+            width: 250px;
+            height: calc(100% - 50px);
+            background-color: #444;
+            color: white;
+            overflow-y: auto;
+            transition: left 0.2s ease;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+        }
+        
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        
+        main {
+            padding: 60px 20px 20px;
+            text-align: center;
+        }
+        
+        .open {
+            left: 0 !important;
+        }
+        
+        .chat-interface {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .chat-window {
+            width: 70%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-bottom: 80px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+        
+        .chat-window div {
+            margin: 5px 10px;
+            padding: 10px;
+            border-radius: 20px;
+            max-width: 70%;
+        }
+        
+        .ai-message {
+            background-color: #4d4d4d;
+            align-self: flex-start;
+            color: white;
+            text-align: left;
+        }
+        
+        .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 30px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            background-color: #2a2a2a;
+            color: white;
+        }
+        
+        button {
+            padding: 10px 15px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #777;
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5px 10px;
+            }
+        
+            .logo img {
+                height: 25px;
+            }
+        
+            .menu-btn {
+                font-size: 20px;
+            }
+        
+            .sidebar {
+                width: 200px;
+                top: 50px;
+                height: calc(100% - 50px);
+                padding: 10px;
+            }
+        
+            .chat-interface, .input-container {
+                width: 90%;
+            }
+        
+            .chat-window {
+                width: 100%;
+            }
+        
+            .input-container {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="about.html" target="_blank" class="logo">
+                <img src="Logo.jpg" alt="Model Logo">
+            </a>
+        </div>
+        <div class="menu-btn-container">
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+    </header>    
+    <aside class="sidebar" id="sidebar">
+        <h2><b>Chat Histories</b></h2>
+        <ul>
+            <li>Chat 1</li>
+            <li>Chat 2</li>
+            <li>Chat 3</li>
+        </ul>
+    </aside>
+    <main>
+        <h1>NiFty welcomes you</h1>
+        <p><i>This model is on his training phase. so if you found information is Incorrect then Report it.</i></p>
+        <div class="chat-interface">
+            <div class="chat-window" id="chatWindow">
+                <!-- Messages will appear here -->
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your query..." onkeydown="if(event.key === 'Enter') sendMessage()">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </main>
+        
+    <script>
+        function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (message) {
+                addMessage('user', message);
+                input.value = '';
+                setTimeout(() => {
+                    addMessage('ai', 'Model is not deployed with website yet');
+                }, 1000);
+            }
+        }
+
+        function addMessage(sender, message) {
+            const chatWindow = document.getElementById('chatWindow');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = sender === 'user' ? 'user-message' : 'ai-message';
+            messageDiv.textContent = message;
+            chatWindow.appendChild(messageDiv);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+    </script>
+</body>
+</html>
